@@ -6,25 +6,32 @@ The skill is deployment-agnostic: it works with self-hosted and hosted Vikunja i
 
 ## Install with Hermes
 
-Install directly from the public GitHub repository:
+Install directly from this public GitHub skill path:
 
 ```bash
-hermes skills install tim-toothed/vikunja-task-management --category productivity --yes
+hermes skills install tim-toothed/vikunja-task-management/skills/vikunja-task-management --category productivity --yes
 ```
 
-The repository form is recommended because it includes the linked API references.
+The full `owner/repo/path` identifier is required for GitHub skills. Hermes also downloads the referenced files under `references/`.
+
+To make the skill discoverable through `hermes skills search`, add the repository as a tap first:
+
+```bash
+hermes skills tap add tim-toothed/vikunja-task-management
+hermes skills search vikunja --source github
+```
 
 Install from a direct `SKILL.md` URL when only the main skill is needed:
 
 ```bash
-hermes skills install https://raw.githubusercontent.com/tim-toothed/vikunja-task-management/main/SKILL.md --category productivity --yes
+hermes skills install https://raw.githubusercontent.com/tim-toothed/vikunja-task-management/main/skills/vikunja-task-management/SKILL.md --category productivity --yes
 ```
 
 Check the installed skill:
 
 ```bash
 hermes skills list
-hermes skills inspect tim-toothed/vikunja-task-management
+hermes skills inspect tim-toothed/vikunja-task-management/skills/vikunja-task-management
 ```
 
 ## Configuration
@@ -41,7 +48,7 @@ Do not commit `.env` or real credentials. The token is intentionally not include
 ## Publish or update from a local checkout
 
 ```bash
-hermes skills publish ./vikunja-task-management --to github --repo tim-toothed/vikunja-task-management
+hermes skills publish ./skills/vikunja-task-management --to github --repo tim-toothed/vikunja-task-management
 ```
 
 Or use Git directly:
@@ -55,9 +62,9 @@ git push origin main
 ## Contents
 
 ```text
-SKILL.md
-references/api-contract.md
-references/openapi-path-index.md
+skills/vikunja-task-management/SKILL.md
+skills/vikunja-task-management/references/api-contract.md
+skills/vikunja-task-management/references/openapi-path-index.md
 ```
 
 ---
@@ -70,19 +77,26 @@ Skill не зависит от способа размещения Vikunja: по
 
 ## Установка через Hermes
 
-Установка из публичного GitHub-репозитория:
+Установка из публичного GitHub skill path:
 
 ```bash
-hermes skills install tim-toothed/vikunja-task-management --category productivity --yes
+hermes skills install tim-toothed/vikunja-task-management/skills/vikunja-task-management --category productivity --yes
 ```
 
-Этот способ предпочтителен, потому что устанавливает основной skill вместе с API-reference.
+Для GitHub необходим полный идентификатор в формате `owner/repo/path/to/skill`. Hermes также загрузит связанные файлы из `references/`.
+
+Чтобы skill находился через поиск Hermes:
+
+```bash
+hermes skills tap add tim-toothed/vikunja-task-management
+hermes skills search vikunja --source github
+```
 
 Проверка установленного skill:
 
 ```bash
 hermes skills list
-hermes skills inspect tim-toothed/vikunja-task-management
+hermes skills inspect tim-toothed/vikunja-task-management/skills/vikunja-task-management
 ```
 
 ## Конфигурация
@@ -99,7 +113,7 @@ VIKUNJA_API_TOKEN=<agent-api-token>
 ## Состав
 
 ```text
-SKILL.md
-references/api-contract.md
-references/openapi-path-index.md
+skills/vikunja-task-management/SKILL.md
+skills/vikunja-task-management/references/api-contract.md
+skills/vikunja-task-management/references/openapi-path-index.md
 ```
