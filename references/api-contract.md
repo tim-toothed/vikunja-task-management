@@ -1,108 +1,108 @@
-# Vikunja API index
+# Vikunja API Index
 
 API base: `{VIKUNJA_URL}/api/{version}`
 
-Поддерживаемые версии: `v1`, `v2`.
+Supported versions: `v1`, `v2`.
 
-Auth:
+Authentication:
 
 ```http
 Authorization: Bearer <agent-api-token>
 Content-Type: application/json
 ```
 
-Токен брать из локального credential source агента.
+Get the token from the current agent's local credential source.
 
-> `organizations` в Vikunja API отсутствует. Используются `teams` и `projects`.
+> Vikunja has no `organizations` API resource. Use `teams` and `projects`.
 
-## System and admin
+## System and Admin
 
-| Method | Endpoint | Использование |
+| Method | Endpoint | Use |
 |---|---|---|
-| `GET` | `/info` | Версия и информация API |
-| `GET` | `/admin/overview` | Сводка администратора |
-| `GET` | `/admin/projects` | Все проекты для администратора |
-| `GET` | `/admin/users` | Все пользователи для администратора |
-| `POST` | `/admin/users/{id}/admin` | Изменить admin-статус |
-| `POST` | `/admin/users/{id}/status` | Изменить статус пользователя |
-| `POST` | `/admin/projects/{id}/owner` | Изменить владельца проекта |
+| `GET` | `/info` | API version and service information |
+| `GET` | `/admin/overview` | Administrator overview |
+| `GET` | `/admin/projects` | All projects for an administrator |
+| `GET` | `/admin/users` | All users for an administrator |
+| `POST` | `/admin/users/{id}/admin` | Change administrator status |
+| `POST` | `/admin/users/{id}/status` | Change user status |
+| `POST` | `/admin/projects/{id}/owner` | Change project owner |
 
-## Users and account
+## Users and Account
 
-| Method | Endpoint | Использование |
+| Method | Endpoint | Use |
 |---|---|---|
-| `GET` | `/user` | Текущий пользователь |
-| `GET` | `/users?s={username}` | Поиск пользователей |
-| `GET` | `/users/{username}/avatar` | Avatar пользователя |
-| `POST` | `/user/token` | Создать API token |
-| `DELETE` | `/user/token/{id}` | Удалить API token |
-| `POST` | `/user/token/refresh` | Обновить token |
-| `GET` | `/user/settings/general` | Общие настройки |
-| `POST` | `/user/settings/general` | Изменить общие настройки |
-| `POST` | `/user/settings/email` | Изменить email |
-| `POST` | `/user/password` | Изменить пароль |
-| `GET` | `/user/timezones` | Часовые пояса |
-| `GET` | `/user/export` | Экспорт данных |
-| `POST` | `/user/export/request` | Запросить экспорт |
-| `GET` | `/user/export/download` | Скачать экспорт |
-| `POST` | `/user/logout` | Завершить сессию |
+| `GET` | `/user` | Current user |
+| `GET` | `/users?s={username}` | Find users |
+| `GET` | `/users/{username}/avatar` | User avatar |
+| `POST` | `/user/token` | Create an API token |
+| `DELETE` | `/user/token/{id}` | Delete an API token |
+| `POST` | `/user/token/refresh` | Refresh a token |
+| `GET` | `/user/settings/general` | General settings |
+| `POST` | `/user/settings/general` | Update general settings |
+| `POST` | `/user/settings/email` | Change email |
+| `POST` | `/user/password` | Change password |
+| `GET` | `/user/timezones` | Time zones |
+| `GET` | `/user/export` | Export data |
+| `POST` | `/user/export/request` | Request an export |
+| `GET` | `/user/export/download` | Download an export |
+| `POST` | `/user/logout` | Log out |
 
 ## Teams
 
-| Method | Endpoint | Использование |
+| Method | Endpoint | Use |
 |---|---|---|
-| `GET` | `/teams` | Список команд |
-| `PUT` | `/teams` | Создать команду |
-| `GET` | `/teams/{teamID}` | Команда |
-| `POST` | `/teams/{teamID}` | Обновить команду |
-| `DELETE` | `/teams/{teamID}` | Удалить команду |
-| `GET` | `/teams/{teamID}/members` | Участники |
-| `PUT` | `/teams/{teamID}/members` | Добавить участника |
-| `DELETE` | `/teams/{teamID}/members/{userID}` | Удалить участника |
-| `POST` | `/teams/{teamID}/members/{userID}/admin` | Изменить admin-статус участника |
+| `GET` | `/teams` | List teams |
+| `PUT` | `/teams` | Create a team |
+| `GET` | `/teams/{teamID}` | Get a team |
+| `POST` | `/teams/{teamID}` | Update a team |
+| `DELETE` | `/teams/{teamID}` | Delete a team |
+| `GET` | `/teams/{teamID}/members` | List members |
+| `PUT` | `/teams/{teamID}/members` | Add a member |
+| `DELETE` | `/teams/{teamID}/members/{userID}` | Remove a member |
+| `POST` | `/teams/{teamID}/members/{userID}/admin` | Change member admin status |
 
 ## Projects
 
-| Method | Endpoint | Использование |
+| Method | Endpoint | Use |
 |---|---|---|
-| `GET` | `/projects` | Список проектов |
-| `PUT` | `/projects` | Создать проект |
-| `GET` | `/projects/{projectID}` | Проект |
-| `POST` | `/projects/{projectID}` | Обновить проект |
-| `DELETE` | `/projects/{projectID}` | Удалить проект |
-| `POST` | `/projects/{projectID}/duplicate` | Дублировать проект |
-| `GET` | `/projects/{projectID}/users` | Пользователи проекта |
-| `PUT` | `/projects/{projectID}/users` | Добавить пользователя |
-| `DELETE` | `/projects/{projectID}/users/{userID}` | Удалить пользователя |
-| `GET` | `/projects/{projectID}/teams` | Команды проекта |
-| `PUT` | `/projects/{projectID}/teams` | Добавить команду к проекту |
-| `DELETE` | `/projects/{projectID}/teams/{teamID}` | Удалить команду проекта |
-| `GET` | `/projects/{projectID}/shares` | Shared links проекта |
-| `PUT` | `/projects/{projectID}/shares` | Создать shared link |
-| `DELETE` | `/projects/{projectID}/shares/{shareID}` | Удалить shared link |
-| `GET` | `/projects/{projectID}/webhooks` | Webhooks проекта |
-| `PUT` | `/projects/{projectID}/webhooks` | Создать webhook |
-| `POST` | `/projects/{projectID}/webhooks/{webhookID}` | Обновить webhook |
-| `DELETE` | `/projects/{projectID}/webhooks/{webhookID}` | Удалить webhook |
-| `GET` | `/projects/{projectID}/tasks` | Задачи проекта |
-| `PUT` | `/projects/{projectID}/tasks` | Создать задачу в проекте |
+| `GET` | `/projects` | List projects |
+| `PUT` | `/projects` | Create a project |
+| `GET` | `/projects/{projectID}` | Get a project |
+| `POST` | `/projects/{projectID}` | Update a project |
+| `DELETE` | `/projects/{projectID}` | Delete a project |
+| `POST` | `/projects/{projectID}/duplicate` | Duplicate a project |
+| `GET` | `/projects/{projectID}/users` | Project users |
+| `PUT` | `/projects/{projectID}/users` | Add a project user |
+| `DELETE` | `/projects/{projectID}/users/{userID}` | Remove a project user |
+| `GET` | `/projects/{projectID}/teams` | Project teams |
+| `PUT` | `/projects/{projectID}/teams` | Add a team to a project |
+| `DELETE` | `/projects/{projectID}/teams/{teamID}` | Remove a project team |
+| `GET` | `/projects/{projectID}/shares` | Project share links |
+| `PUT` | `/projects/{projectID}/shares` | Create a share link |
+| `DELETE` | `/projects/{projectID}/shares/{shareID}` | Delete a share link |
+| `GET` | `/projects/{projectID}/webhooks` | Project webhooks |
+| `PUT` | `/projects/{projectID}/webhooks` | Create a webhook |
+| `POST` | `/projects/{projectID}/webhooks/{webhookID}` | Update a webhook |
+| `DELETE` | `/projects/{projectID}/webhooks/{webhookID}` | Delete a webhook |
+| `GET` | `/projects/{projectID}/tasks` | Project tasks |
+| `PUT` | `/projects/{projectID}/tasks` | Create a task in a project |
 
-## Project views and Kanban
+## Project Views and Kanban
 
-| Method | Endpoint | Использование |
+| Method | Endpoint | Use |
 |---|---|---|
-| `GET` | `/projects/{projectID}/views` | Views проекта |
-| `PUT` | `/projects/{projectID}/views` | Создать view |
-| `POST` | `/projects/{projectID}/views/{viewID}` | Обновить view |
-| `DELETE` | `/projects/{projectID}/views/{viewID}` | Удалить view |
-| `GET` | `/projects/{projectID}/views/{viewID}/buckets` | Колонки Kanban |
-| `PUT` | `/projects/{projectID}/views/{viewID}/buckets` | Создать колонку |
-| `POST` | `/projects/{projectID}/views/{viewID}/buckets/{bucketID}` | Обновить колонку |
-| `DELETE` | `/projects/{projectID}/views/{viewID}/buckets/{bucketID}` | Удалить колонку |
-| `POST` | `/projects/{projectID}/views/{viewID}/buckets/{bucketID}/tasks` | Переместить задачу |
-| `GET` | `/projects/{projectID}/views/{viewID}/tasks` | Задачи через view |
+| `GET` | `/projects/{projectID}/views` | Project views |
+| `PUT` | `/projects/{projectID}/views` | Create a view |
+| `POST` | `/projects/{projectID}/views/{viewID}` | Update a view |
+| `DELETE` | `/projects/{projectID}/views/{viewID}` | Delete a view |
+| `GET` | `/projects/{projectID}/views/{viewID}/buckets` | Kanban columns |
+| `PUT` | `/projects/{projectID}/views/{viewID}/buckets` | Create a bucket |
+| `POST` | `/projects/{projectID}/views/{viewID}/buckets/{bucketID}` | Update a bucket |
+| `DELETE` | `/projects/{projectID}/views/{viewID}/buckets/{bucketID}` | Delete a bucket |
+| `POST` | `/projects/{projectID}/views/{viewID}/buckets/{bucketID}/tasks` | Move a task |
+| `GET` | `/projects/{projectID}/views/{viewID}/tasks` | Tasks through a view |
 
-Move task:
+Move a task:
 
 ```json
 {"task_id":123,"project_view_id":456,"bucket_id":789}
@@ -110,33 +110,33 @@ Move task:
 
 ## Tasks
 
-| Method | Endpoint | Использование |
+| Method | Endpoint | Use |
 |---|---|---|
-| `GET` | `/tasks/{taskID}` | Задача |
-| `POST` | `/tasks/{taskID}` | Обновить задачу |
-| `DELETE` | `/tasks/{taskID}` | Удалить задачу |
-| `GET` | `/tasks/{taskID}/assignees` | Назначения |
-| `PUT` | `/tasks/{taskID}/assignees` | Назначить пользователя |
-| `DELETE` | `/tasks/{taskID}/assignees/{userID}` | Снять назначение |
-| `POST` | `/tasks/{taskID}/assignees/bulk` | Массовые назначения |
-| `GET` | `/tasks/{taskID}/labels` | Метки задачи |
-| `PUT` | `/tasks/{taskID}/labels` | Добавить метку |
-| `DELETE` | `/tasks/{taskID}/labels/{labelID}` | Удалить метку |
-| `POST` | `/tasks/{taskID}/labels/bulk` | Массовые метки |
-| `GET` | `/tasks/{taskID}/comments` | Комментарии |
-| `PUT` | `/tasks/{taskID}/comments` | Добавить комментарий |
-| `POST` | `/tasks/{taskID}/comments/{commentID}` | Обновить комментарий |
-| `DELETE` | `/tasks/{taskID}/comments/{commentID}` | Удалить комментарий |
-| `GET` | `/tasks/{taskID}/attachments` | Вложения |
-| `PUT` | `/tasks/{taskID}/attachments` | Добавить вложение |
-| `DELETE` | `/tasks/{taskID}/attachments/{attachmentID}` | Удалить вложение |
-| `GET` | `/tasks/{taskID}/relations` | Связи задач |
-| `PUT` | `/tasks/{taskID}/relations` | Создать связь |
-| `DELETE` | `/tasks/{taskID}/relations/{kind}/{otherTaskID}` | Удалить связь |
-| `POST` | `/tasks/{taskID}/duplicate` | Дублировать задачу |
-| `POST` | `/tasks/{taskID}/position` | Изменить позицию |
-| `POST` | `/tasks/{taskID}/read` | Отметить прочитанной |
-| `PUT` | `/tasks/bulk` | Массовое изменение задач |
+| `GET` | `/tasks/{taskID}` | Get a task |
+| `POST` | `/tasks/{taskID}` | Update a task |
+| `DELETE` | `/tasks/{taskID}` | Delete a task |
+| `GET` | `/tasks/{taskID}/assignees` | List assignees |
+| `PUT` | `/tasks/{taskID}/assignees` | Assign a user |
+| `DELETE` | `/tasks/{taskID}/assignees/{userID}` | Remove an assignee |
+| `POST` | `/tasks/{taskID}/assignees/bulk` | Bulk assignments |
+| `GET` | `/tasks/{taskID}/labels` | Task labels |
+| `PUT` | `/tasks/{taskID}/labels` | Add a label |
+| `DELETE` | `/tasks/{taskID}/labels/{labelID}` | Remove a label |
+| `POST` | `/tasks/{taskID}/labels/bulk` | Bulk labels |
+| `GET` | `/tasks/{taskID}/comments` | Comments |
+| `PUT` | `/tasks/{taskID}/comments` | Add a comment |
+| `POST` | `/tasks/{taskID}/comments/{commentID}` | Update a comment |
+| `DELETE` | `/tasks/{taskID}/comments/{commentID}` | Delete a comment |
+| `GET` | `/tasks/{taskID}/attachments` | Attachments |
+| `PUT` | `/tasks/{taskID}/attachments` | Add an attachment |
+| `DELETE` | `/tasks/{taskID}/attachments/{attachmentID}` | Delete an attachment |
+| `GET` | `/tasks/{taskID}/relations` | Task relations |
+| `PUT` | `/tasks/{taskID}/relations` | Create a relation |
+| `DELETE` | `/tasks/{taskID}/relations/{kind}/{otherTaskID}` | Delete a relation |
+| `POST` | `/tasks/{taskID}/duplicate` | Duplicate a task |
+| `POST` | `/tasks/{taskID}/position` | Change task position |
+| `POST` | `/tasks/{taskID}/read` | Mark as read |
+| `PUT` | `/tasks/bulk` | Bulk task update |
 
 Task fields:
 
@@ -153,28 +153,28 @@ Task fields:
 
 ## Labels
 
-| Method | Endpoint | Использование |
+| Method | Endpoint | Use |
 |---|---|---|
-| `GET` | `/labels` | Список меток |
-| `PUT` | `/labels` | Создать метку |
-| `GET` | `/labels/{labelID}` | Метка |
-| `POST` | `/labels/{labelID}` | Обновить метку |
-| `DELETE` | `/labels/{labelID}` | Удалить метку |
+| `GET` | `/labels` | List labels |
+| `PUT` | `/labels` | Create a label |
+| `GET` | `/labels/{labelID}` | Get a label |
+| `POST` | `/labels/{labelID}` | Update a label |
+| `DELETE` | `/labels/{labelID}` | Delete a label |
 
 ## Other
 
-| Method | Endpoint | Использование |
+| Method | Endpoint | Use |
 |---|---|---|
-| `POST` | `/migration/csv/preview` | Предпросмотр CSV-импорта |
-| `GET/PUT` | `/projects/{projectID}/background` | Background проекта |
+| `POST` | `/migration/csv/preview` | Preview CSV import |
+| `GET/PUT` | `/projects/{projectID}/background` | Project background |
 | `GET/PUT` | `/projects/{projectID}/backgrounds/unsplash` | Unsplash background |
-| `PUT` | `/projects/{projectID}/backgrounds/upload` | Загрузить background |
-| `GET/PUT` | `/user/settings/webhooks` | Пользовательские webhooks |
+| `PUT` | `/projects/{projectID}/backgrounds/upload` | Upload a background |
+| `GET/PUT` | `/user/settings/webhooks` | User webhooks |
 | `GET/PUT` | `/user/settings/totp` | TOTP |
 | `GET/PUT` | `/user/settings/avatar` | Avatar |
 | `GET/PUT` | `/user/settings/token/caldav` | CalDAV token |
 
-Vikunja v2 дополнительно содержит time entries:
+Vikunja v2 additionally exposes time entries:
 
 ```text
 GET/PUT /projects/{projectID}/time-entries

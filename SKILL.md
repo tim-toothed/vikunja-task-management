@@ -1,128 +1,124 @@
 ---
 name: vikunja-task-management
-description: Use when an agent must read, create, update, assign, or organize tasks in Vikunja through its API.
+description: Use when an agent works with Vikunja tasks via API. Использовать при работе агента с задачами Vikunja через API.
 version: 1.0.0
-author: tim-toothed
+author: Hermes Agent
 license: MIT
 metadata:
   hermes:
-    tags: [vikunja, викунжа, викунья, задачник, задачи, доска, tasks, kanban, ghannt, api]
+    tags: [vikunja, tasks, kanban, api, задачи, задачник, канбан]
     related_skills: []
 ---
 
 # Vikunja Task Management
 
-## Purpose
+## Overview
 
-Работа с любым экземпляром Vikunja через API: проекты, задачи, назначения, сроки, приоритеты, метки и Kanban-колонки.
+Use this skill to work with any Vikunja instance through its API: projects, tasks, assignees, dates, priorities, labels, and Kanban columns.
 
-Skill не зависит от способа размещения Vikunja, домена, конкретной команды, проекта или пользователя.
+The skill is independent of the deployment model, domain, organization, project, and user.
+
+## When to Use
+
+Use this skill when an agent must:
+
+- discover Vikunja users, teams, projects, views, or tasks;
+- create, update, assign, move, label, or complete tasks;
+- manage project access for users or teams;
+- organize work through Kanban columns.
+
+Do not hardcode organization-specific IDs, usernames, URLs, or credentials.
 
 ## Configuration
 
-Использовать:
+Use:
 
-- `VIKUNJA_URL` — базовый URL Vikunja;
-- `VIKUNJA_API_TOKEN` — API-токен текущего агента из локального credential source (обычно `.env` файла);
+- `VIKUNJA_URL` — the Vikunja base URL;
+- `VIKUNJA_API_TOKEN` — the current agent's API token from the local credential source, commonly the Hermes `.env` file.
 
-Не зашивать в skill username, project ID, team ID, API-токены, пароли или структуру конкретной организации. Если credential source не содержит нужных данных, сообщить об этом без вывода секрета.
+Never put usernames, project IDs, team IDs, API tokens, passwords, or organization-specific structure into this skill. If the credential source is missing a required value, report the missing variable without exposing a secret.
 
-Перед изменением данных:
+Before changing data:
 
-1. Проверить доступ к API.
-2. Найти пользователя по точному username.
-3. Найти проект по точному названию.
-4. Проверить существующие задачи и защититься от дублей.
-5. Не создавать новый проект или команду без явного указания.
+1. Verify API access.
+2. Resolve the user by exact username.
+3. Resolve the project by exact title.
+4. Check existing tasks and prevent duplicates.
+5. Do not create a project or team unless explicitly requested.
 
-## Projects and team access
+## Projects and Team Access
 
-Членство пользователя в команде не делает его личные проекты общедоступными. Чтобы проект был виден команде, проект нужно отдельно связать с командой через project-team permission.
+Team membership does not automatically make a personal project visible to the team. Sharing a project with a team is a separate project-team permission operation.
 
-При изменении доступа:
+When changing access:
 
-- найти точную команду;
-- проверить текущую связь проекта и команды;
-- не менять владельца проекта;
-- назначать минимально необходимые права;
-- перечитать связь после изменения.
+- resolve the exact team;
+- check the current project-team relation;
+- do not change the project owner;
+- grant the minimum required permission;
+- read the relation back after the change.
 
 ## Tasks
 
-При создании или обновлении задачи:
+When creating or updating a task:
 
-- назначать её на точного пользователя через API;
-- хранить рабочий статус в Kanban-колонке проекта;
-- для завершённых задач использовать также `done=true`;
-- срок указывать полями `start_date` и `due_date`;
-- приоритет указывать полем `priority`;
-- тематическую группировку делать через labels;
-- не записывать в description служебные поля, миграционные ID, внутренние маркеры и дубли статуса;
-- не дублировать в description данные, которые уже представлены колонкой, сроком, приоритетом, меткой или assignee.
+- assign it to the exact user through the API;
+- store the working status in the project's Kanban column;
+- use `done=true` for completed tasks;
+- store dates in `start_date` and `due_date`;
+- store importance in `priority`;
+- use labels for thematic grouping;
+- do not put `source`, migration IDs, internal markers, or duplicated status in `description`;
+- do not duplicate in `description` information already represented by a column, date, priority, label, or assignee.
 
 ## Kanban
 
-Перед перемещением задачи:
+Before moving a task:
 
-1. Получить Kanban view проекта.
-2. Получить существующие bucket’ы этого view.
-3. Использовать существующие колонки, не создавать дубликаты.
-4. Переместить задачу через endpoint bucket tasks.
-5. Проверить связь задачи с bucket и её позицию.
+1. Get the project's Kanban view.
+2. Get the existing buckets for that view.
+3. Use an existing bucket; do not create duplicates.
+4. Move the task through the bucket-task endpoint.
+5. Read back the task-bucket relation and position.
 
-`bucket_id` в обычном обновлении задачи не заменяет операцию перемещения в Kanban.
+A `bucket_id` in a normal task update does not replace the Kanban move operation.
 
-## API operations
+## API Operations
 
-Точные форматы запросов и ответов приведены в `references/api-contract.md`. Полный индекс путей и методов из OpenAPI — в `references/openapi-path-index.md`. Загружать references при работе через API, а не дублировать их содержимое в основном skill.
+Use `references/api-contract.md` for request formats and common endpoint usage. Use `references/openapi-path-index.md` for the complete path and method index generated from the v1 and v2 OpenAPI schemas.
 
-Основные операции:
+Load references on demand instead of duplicating their contents in this file.
 
-- `GET /api/v1/projects`;
-- `GET /api/v1/projects/{id}/tasks`;
-- `PUT /api/v1/projects/{id}/tasks`;
-- `POST /api/v1/tasks/{id}`;
-- `DELETE /api/v1/tasks/{id}`;
-- `GET /api/v1/tasks/{id}/assignees`;
-- `PUT /api/v1/tasks/{id}/assignees`;
-- `GET /api/v1/projects/{project}/views`;
-- `GET /api/v1/projects/{project}/views/{view}/buckets`;
-- `POST /api/v1/projects/{project}/views/{view}/buckets/{bucket}/tasks`;
-- `GET /api/v1/labels`;
-- `PUT /api/v1/labels`;
-- `GET /api/v1/tasks/{task}/labels`;
-- `PUT /api/v1/tasks/{task}/labels`.
+## Safe Updates
 
-## Safe updates
-
-Полное обновление задачи может сбросить или не включить связанные данные. После полного `POST /tasks/{id}` повторно проверить и при необходимости восстановить:
+A full task update can reset or omit related data. After a full `POST /tasks/{id}`, re-check and restore when necessary:
 
 - assignee;
 - labels;
 - Kanban bucket;
 - priority;
-- даты;
+- dates;
 - `done`.
 
-HTTP-код успеха сам по себе не подтверждает результат. Состояние задачи и связанные endpoint’ы нужно перечитать после изменения.
+An HTTP success status alone is not completion proof. Read the task and its related endpoints after each change.
 
-## Credential safety
+## Credential Safety
 
-API-токен и другие credentials:
+API tokens and other credentials:
 
-- не выводить в чат, логи, URL или описания задач;
-- не помещать в файлы skill;
-- не передавать между агентами через текст задачи;
-- использовать только через штатный credential source текущего агента.
+- never print them in chat, logs, URLs, or task descriptions;
+- never put them in skill files;
+- never transfer them between agents through task text;
+- use them only through the current agent's credential source.
 
-## Completion criteria
+## Completion Criteria
 
-Операция считается завершённой, когда API подтверждает, что:
+An operation is complete only when the API confirms that:
 
-- задача находится в нужном проекте;
-- назначен точный пользователь;
-- выставлены приоритет и сроки;
-- задача находится в нужной Kanban-колонке;
-- labels соответствуют операции;
-- дубликаты не созданы;
-- проект и командный доступ не изменены за пределами запроса.
+- the task is in the intended project;
+- the exact user is assigned;
+- priority and dates are set;
+- the task is in the intended Kanban column;
+- labels match the operation;
+- no duplicate was created;
+- project and team access were not changed beyond the request.
