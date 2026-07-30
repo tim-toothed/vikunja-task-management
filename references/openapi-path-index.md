@@ -1,0 +1,263 @@
+# Vikunja OpenAPI path index
+
+Сгенерировано из живых схем `/api/v1/docs.json` и `/api/v2/openapi.json`.
+
+## v1 — 126 paths
+
+- `GET` `/admin/overview`
+- `GET` `/admin/projects`
+- `PATCH` `/admin/projects/{id}/owner`
+- `GET, POST` `/admin/users`
+- `DELETE` `/admin/users/{id}`
+- `PATCH` `/admin/users/{id}/admin`
+- `PATCH` `/admin/users/{id}/status`
+- `POST` `/auth/openid/{provider}/callback`
+- `GET` `/backgrounds/unsplash/image/{image}`
+- `GET` `/backgrounds/unsplash/image/{image}/thumb`
+- `GET` `/backgrounds/unsplash/search`
+- `PUT` `/filters`
+- `GET, POST, DELETE` `/filters/{id}`
+- `GET` `/info`
+- `GET, PUT` `/labels`
+- `GET, PUT, DELETE` `/labels/{id}`
+- `POST` `/login`
+- `PUT` `/migration/csv/detect`
+- `PUT` `/migration/csv/migrate`
+- `PUT` `/migration/csv/preview`
+- `GET` `/migration/csv/status`
+- `GET` `/migration/microsoft-todo/auth`
+- `POST` `/migration/microsoft-todo/migrate`
+- `GET` `/migration/microsoft-todo/status`
+- `PUT` `/migration/ticktick/migrate`
+- `GET` `/migration/ticktick/status`
+- `GET` `/migration/todoist/auth`
+- `POST` `/migration/todoist/migrate`
+- `GET` `/migration/todoist/status`
+- `GET` `/migration/trello/auth`
+- `POST` `/migration/trello/migrate`
+- `GET` `/migration/trello/status`
+- `POST` `/migration/vikunja-file/migrate`
+- `GET` `/migration/vikunja-file/status`
+- `PUT` `/migration/wekan/migrate`
+- `GET` `/migration/wekan/status`
+- `GET, POST` `/notifications`
+- `POST` `/notifications/{id}`
+- `GET, PUT` `/projects`
+- `GET, POST, DELETE` `/projects/{id}`
+- `GET, DELETE` `/projects/{id}/background`
+- `POST` `/projects/{id}/backgrounds/unsplash`
+- `PUT` `/projects/{id}/backgrounds/upload`
+- `GET` `/projects/{id}/projectusers`
+- `PUT` `/projects/{id}/tasks`
+- `GET, PUT` `/projects/{id}/teams`
+- `GET, PUT` `/projects/{id}/users`
+- `GET, PUT` `/projects/{id}/views/{view}/buckets`
+- `GET` `/projects/{id}/views/{view}/tasks`
+- `GET, PUT` `/projects/{id}/webhooks`
+- `POST, DELETE` `/projects/{id}/webhooks/{webhookID}`
+- `PUT` `/projects/{projectID}/duplicate`
+- `POST, DELETE` `/projects/{projectID}/teams/{teamID}`
+- `POST, DELETE` `/projects/{projectID}/users/{userID}`
+- `POST, DELETE` `/projects/{projectID}/views/{view}/buckets/{bucketID}`
+- `GET, PUT` `/projects/{project}/shares`
+- `GET, DELETE` `/projects/{project}/shares/{share}`
+- `GET` `/projects/{project}/tasks/by-index/{index}`
+- `GET, PUT` `/projects/{project}/views`
+- `GET, POST, DELETE` `/projects/{project}/views/{id}`
+- `POST` `/projects/{project}/views/{view}/buckets/{bucket}/tasks`
+- `POST` `/register`
+- `GET` `/routes`
+- `POST` `/shares/{share}/auth`
+- `PUT, DELETE` `/subscriptions/{entity}/{entityID}`
+- `GET` `/tasks`
+- `POST` `/tasks/bulk`
+- `GET, POST, DELETE` `/tasks/{id}`
+- `GET, PUT` `/tasks/{id}/attachments`
+- `GET, DELETE` `/tasks/{id}/attachments/{attachmentID}`
+- `POST` `/tasks/{id}/position`
+- `POST` `/tasks/{projecttask}/read`
+- `GET, PUT` `/tasks/{taskID}/assignees`
+- `POST` `/tasks/{taskID}/assignees/bulk`
+- `DELETE` `/tasks/{taskID}/assignees/{userID}`
+- `GET, PUT` `/tasks/{taskID}/comments`
+- `GET, POST, DELETE` `/tasks/{taskID}/comments/{commentID}`
+- `PUT` `/tasks/{taskID}/duplicate`
+- `POST` `/tasks/{taskID}/labels/bulk`
+- `PUT` `/tasks/{taskID}/relations`
+- `DELETE` `/tasks/{taskID}/relations/{relationKind}/{otherTaskID}`
+- `GET, PUT` `/tasks/{task}/labels`
+- `DELETE` `/tasks/{task}/labels/{label}`
+- `GET, PUT` `/teams`
+- `GET, POST, DELETE` `/teams/{id}`
+- `PUT` `/teams/{id}/members`
+- `POST` `/teams/{id}/members/{userID}/admin`
+- `DELETE` `/teams/{id}/members/{username}`
+- `DELETE` `/test/all`
+- `PATCH` `/test/{table}`
+- `GET, PUT` `/tokens`
+- `DELETE` `/tokens/{tokenID}`
+- `GET` `/user`
+- `POST` `/user/confirm`
+- `POST` `/user/deletion/cancel`
+- `POST` `/user/deletion/confirm`
+- `POST` `/user/deletion/request`
+- `GET` `/user/export`
+- `POST` `/user/export/download`
+- `POST` `/user/export/request`
+- `POST` `/user/logout`
+- `POST` `/user/password`
+- `POST` `/user/password/reset`
+- `POST` `/user/password/token`
+- `GET, POST` `/user/settings/avatar`
+- `PUT` `/user/settings/avatar/upload`
+- `POST` `/user/settings/email`
+- `POST` `/user/settings/general`
+- `GET, PUT` `/user/settings/token/caldav`
+- `DELETE` `/user/settings/token/caldav/{id}`
+- `GET` `/user/settings/totp`
+- `POST` `/user/settings/totp/disable`
+- `POST` `/user/settings/totp/enable`
+- `POST` `/user/settings/totp/enroll`
+- `GET` `/user/settings/totp/qrcode`
+- `GET, PUT` `/user/settings/webhooks`
+- `GET` `/user/settings/webhooks/events`
+- `POST, DELETE` `/user/settings/webhooks/{id}`
+- `GET` `/user/timezones`
+- `POST` `/user/token`
+- `POST` `/user/token/refresh`
+- `GET` `/users`
+- `GET` `/webhooks/events`
+- `GET, PUT` `/{kind}/{id}/reactions`
+- `POST` `/{kind}/{id}/reactions/delete`
+- `GET` `/{username}/avatar`
+
+## v2 — 127 paths
+
+- `GET` `/admin/overview`
+- `GET` `/admin/projects`
+- `PATCH` `/admin/projects/{id}/owner`
+- `POST` `/admin/users`
+- `DELETE` `/admin/users/{id}`
+- `PATCH` `/admin/users/{id}/admin`
+- `PATCH` `/admin/users/{id}/password`
+- `POST` `/admin/users/{id}/password-reset-email`
+- `PATCH` `/admin/users/{id}/status`
+- `GET` `/avatar/{username}`
+- `POST` `/filters`
+- `DELETE, GET, PATCH, PUT` `/filters/{filter}`
+- `GET` `/health`
+- `GET` `/info`
+- `GET, POST` `/labels`
+- `DELETE, GET, PATCH, PUT` `/labels/{id}`
+- `POST` `/login`
+- `POST` `/logout`
+- `POST` `/migration/csv/detect`
+- `POST` `/migration/csv/migrate`
+- `POST` `/migration/csv/preview`
+- `GET` `/migration/csv/status`
+- `POST` `/migration/ticktick/migrate`
+- `GET` `/migration/ticktick/status`
+- `POST` `/migration/vikunja-file/migrate`
+- `GET` `/migration/vikunja-file/status`
+- `POST` `/migration/wekan/migrate`
+- `GET` `/migration/wekan/status`
+- `GET, POST` `/notifications`
+- `GET` `/notifications.atom`
+- `PUT` `/notifications/{notificationid}`
+- `POST` `/oauth/authorize`
+- `POST` `/oauth/token`
+- `GET, POST` `/projects`
+- `DELETE, GET, PATCH, PUT` `/projects/{id}`
+- `GET` `/projects/{project_id}/time-entries`
+- `POST` `/projects/{projectid}/duplicate`
+- `DELETE, GET` `/projects/{project}/background`
+- `PUT` `/projects/{project}/backgrounds/upload`
+- `GET, POST` `/projects/{project}/shares`
+- `DELETE, GET` `/projects/{project}/shares/{share}`
+- `GET, POST` `/projects/{project}/tasks`
+- `GET` `/projects/{project}/tasks/by-index/{index}`
+- `GET, POST` `/projects/{project}/teams`
+- `DELETE, PUT` `/projects/{project}/teams/{team}`
+- `GET, POST` `/projects/{project}/users`
+- `GET` `/projects/{project}/users/search`
+- `DELETE, PUT` `/projects/{project}/users/{user}`
+- `GET, POST` `/projects/{project}/views`
+- `DELETE, GET, PATCH, PUT` `/projects/{project}/views/{view}`
+- `GET, POST` `/projects/{project}/views/{view}/buckets`
+- `GET` `/projects/{project}/views/{view}/buckets/tasks`
+- `DELETE, PUT` `/projects/{project}/views/{view}/buckets/{bucket}`
+- `PUT` `/projects/{project}/views/{view}/buckets/{bucket}/tasks`
+- `GET` `/projects/{project}/views/{view}/tasks`
+- `GET, POST` `/projects/{project}/webhooks`
+- `DELETE, PUT` `/projects/{project}/webhooks/{webhook}`
+- `POST` `/register`
+- `GET` `/routes`
+- `POST` `/shares/{share}/auth`
+- `DELETE, POST` `/subscriptions/{entity}/{entityID}`
+- `GET` `/tasks`
+- `PUT` `/tasks/bulk`
+- `DELETE, GET, PATCH, PUT` `/tasks/{projecttask}`
+- `GET, POST` `/tasks/{projecttask}/assignees`
+- `PUT` `/tasks/{projecttask}/assignees/bulk`
+- `DELETE` `/tasks/{projecttask}/assignees/{user}`
+- `POST` `/tasks/{projecttask}/duplicate`
+- `GET, POST` `/tasks/{projecttask}/labels`
+- `PUT` `/tasks/{projecttask}/labels/bulk`
+- `DELETE` `/tasks/{projecttask}/labels/{label}`
+- `PUT` `/tasks/{projecttask}/read`
+- `GET` `/tasks/{task_id}/time-entries`
+- `GET, POST` `/tasks/{task}/attachments`
+- `DELETE, GET` `/tasks/{task}/attachments/{attachment}`
+- `GET, POST` `/tasks/{task}/comments`
+- `DELETE, GET, PATCH, PUT` `/tasks/{task}/comments/{commentid}`
+- `PUT` `/tasks/{task}/position`
+- `POST` `/tasks/{task}/relations`
+- `DELETE` `/tasks/{task}/relations/{relationKind}/{otherTask}`
+- `GET, POST` `/teams`
+- `DELETE, GET, PATCH, PUT` `/teams/{id}`
+- `POST` `/teams/{team}/members`
+- `DELETE` `/teams/{team}/members/{user}`
+- `POST` `/teams/{team}/members/{user}/admin`
+- `GET, POST` `/time-entries`
+- `POST` `/time-entries/timer/stop`
+- `DELETE, GET, PATCH, PUT` `/time-entries/{id}`
+- `GET, POST` `/token/test`
+- `GET, POST` `/tokens`
+- `DELETE` `/tokens/{id}`
+- `GET` `/user`
+- `GET, POST` `/user/bots`
+- `DELETE, GET, PATCH, PUT` `/user/bots/{bot}`
+- `POST` `/user/confirm`
+- `POST` `/user/deletion/cancel`
+- `POST` `/user/deletion/confirm`
+- `POST` `/user/deletion/request`
+- `GET` `/user/export`
+- `POST` `/user/export/download`
+- `POST` `/user/export/request`
+- `POST` `/user/password`
+- `POST` `/user/password/reset`
+- `POST` `/user/password/token`
+- `GET` `/user/sessions`
+- `DELETE` `/user/sessions/{session}`
+- `PUT` `/user/settings/avatar`
+- `GET, PATCH, PUT` `/user/settings/avatar/provider`
+- `PUT` `/user/settings/email`
+- `PUT` `/user/settings/general`
+- `GET, POST` `/user/settings/token/caldav`
+- `DELETE` `/user/settings/token/caldav/{id}`
+- `GET` `/user/settings/totp`
+- `POST` `/user/settings/totp/disable`
+- `POST` `/user/settings/totp/enable`
+- `POST` `/user/settings/totp/enroll`
+- `GET` `/user/settings/totp/qrcode`
+- `GET, POST` `/user/settings/webhooks`
+- `GET` `/user/settings/webhooks/events`
+- `DELETE, PUT` `/user/settings/webhooks/{webhook}`
+- `GET` `/user/timezones`
+- `POST` `/user/token`
+- `POST` `/user/token/refresh`
+- `GET` `/users`
+- `GET` `/webhooks/events`
+- `GET, POST` `/{entitykind}/{entityid}/reactions`
+- `POST` `/{entitykind}/{entityid}/reactions/delete`
+

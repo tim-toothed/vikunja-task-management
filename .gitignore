@@ -1,0 +1,15 @@
+# Secrets and local credentials
+.env
+.env.*
+!.env.example
+*.token
+*.secret
+*password*
+*token*
+credentials.json
+secrets.json
+
+# Local IDE/system files
+.vscode/
+.idea/
+__pycache__/
