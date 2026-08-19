@@ -1,6 +1,6 @@
 # Vikunja Task Management for Hermes
 
-A portable Hermes Agent skill for working with Vikunja through its API.
+A portable Hermes Agent skill for working with [Vikunja](https://github.com/go-vikunja/vikunja) through its API.
 
 The skill is deployment-agnostic: it works with self-hosted and hosted Vikunja instances. It covers projects, tasks, assignees, dates, priorities, labels, team access, and Kanban columns.
 
